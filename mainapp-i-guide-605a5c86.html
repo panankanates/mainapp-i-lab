@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 故事与陪伴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background-color: #f6f5f3;
+            color: #1f2a3a;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        /* 深色头图 hero */
+        .hero {
+            background: linear-gradient(145deg, #0b141c 0%, #1a2633 80%, #233142 100%);
+            color: #eae7de;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to top, #f6f5f3, transparent);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+            color: #f1ede6;
+        }
+
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #b7b1a3;
+            max-width: 640px;
+            margin: 0 auto 0.4rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .hero .intro-sentence {
+            font-size: 1.05rem;
+            color: #cfcabc;
+            max-width: 580px;
+            margin: 1.2rem auto 0;
+            font-style: normal;
+            border-top: 1px solid rgba(255, 255, 240, 0.12);
+            padding-top: 1.4rem;
+        }
+
+        /* 浅色正文区容器 */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.6rem 3rem;
+        }
+
+        /* 承接段落 */
+        .lead-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.4rem 2.2rem;
+            margin-top: -1.2rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+            position: relative;
+            z-index: 2;
+        }
+
+        .lead-section p {
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+        }
+
+        .lead-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .lead-section .highlight-link {
+            color: #b05b3b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(176, 91, 59, 0.3);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .lead-section .highlight-link:hover {
+            color: #87462b;
+            border-bottom-color: #87462b;
+        }
+
+        /* 特点卡片区域 */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin: 2.4rem 0 1.8rem;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem 1.6rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eae7e0;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #1f2a3a;
+            letter-spacing: 0.03em;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #3c485a;
+            line-height: 1.6;
+        }
+
+        .feature-card .emoji-marker {
+            display: inline-block;
+            margin-right: 0.35rem;
+            font-size: 1.1rem;
+        }
+
+        /* 场景 / 提示 混合区块 */
+        .scene-block {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            margin: 1.6rem 0;
+            border: 1px solid #eae7e0;
+        }
+
+        .scene-block h2 {
+            font-size: 1.3rem;
+            font-weight: 450;
+            margin-bottom: 1.2rem;
+            color: #1f2a3a;
+            letter-spacing: 0.02em;
+        }
+
+        .scene-block .scene-item {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .scene-block .scene-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .scene-block .scene-num {
+            min-width: 28px;
+            height: 28px;
+            background: #eae7e0;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #1f2a3a;
+            font-weight: 450;
+        }
+
+        .scene-block .scene-text {
+            flex: 1;
+            font-size: 0.98rem;
+            color: #2b3749;
+        }
+
+        /* 温和结尾 */
+        .gentle-footer {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            margin-top: 1.6rem;
+            border: 1px solid #eae7e0;
+            text-align: center;
+        }
+
+        .gentle-footer p {
+            font-size: 1rem;
+            color: #2c3a4e;
+            max-width: 560px;
+            margin: 0 auto 0.6rem;
+            line-height: 1.7;
+        }
+
+        .gentle-footer .small-print {
+            font-size: 0.88rem;
+            color: #6e7b8c;
+            margin-top: 1rem;
+        }
+
+        .gentle-footer .highlight-link {
+            color: #b05b3b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(176, 91, 59, 0.25);
+        }
+
+        .gentle-footer .highlight-link:hover {
+            color: #87462b;
+            border-bottom-color: #87462b;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 700px) {
+            .hero {
+                padding: 3rem 1.2rem 2.6rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .sub {
+                font-size: 1rem;
+            }
+
+            .lead-section {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .scene-block {
+                padding: 1.6rem 1.2rem;
+            }
+
+            .scene-block .scene-item {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+            .gentle-footer {
+                padding: 1.6rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .container {
+                padding: 0 0.8rem 2rem;
+            }
+
+            .feature-card {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>爱游戏</h1>
+        <p class="sub">一段安静的陪伴，从屏幕到心里。</p>
+        <p class="intro-sentence">
+            有些乐趣不是用来追赶的，而是用来回味的。游戏如此，回忆也是。
+        </p>
+    </header>
+
+    <main class="container">
+
+        <!-- 承接段落：展开主题 -->
+        <div class="lead-section">
+            <p>
+                几年前，人们谈论游戏时更在意画面和胜负。如今，越来越多的人重新发现，游戏更像是可以随身携带的安静空间——不需要击败谁，只需要在某个下午或深夜，打开那个熟悉的界面，让心绪随着节奏慢慢沉下来。这也是为什么，我们把<a href="https://mainapp-i-game.com.cn" class="highlight-link">爱游戏</a>看作一个持续的陪伴，而不是一个要通关的任务。
+            </p>
+            <p>
+                从策略到叙事，从模拟经营到角色沉浸，每个类型都对应着一种生活里的情绪。有人用它整理思绪，有人用它连接远方的朋友，也有人仅仅用它来度过一小段属于自己的时间。认真整理这些体验背后的线索，便是我们在这里想做的事。
+            </p>
+        </div>
+
+        <!-- 特点列表：四张卡片 -->
+        <div class="features">
+            <div class="feature-card">
+                <h3><span class="emoji-marker">◈</span> 不追赶版本</h3>
+                <p>很多好作品不需要时刻更新。它们像书架上的旧书，任何时候翻开，都还能找到当时的温度。</p>
+            </div>
+            <div class="feature-card">
+                <h3><span class="emoji-marker">◈</span> 尊重节奏</h3>
+                <p>每个人的游戏方式不同。有人喜欢一口气玩完，也有人愿意每天只走一小段路。这里没有标准。</p>
+            </div>
+            <div class="feature-card">
+                <h3><span class="emoji-marker">◈</span> 理解与选择</h3>
+                <p>比起推荐「最火」的作品，我们更倾向分享那些经得起反复回味的标题，以及它们背后的设计思路。</p>
+            </div>
+            <div class="feature-card">
+                <h3><span class="emoji-marker">◈</span> 安静连接</h3>
+                <p>无论是单机还是联机，重要的不是排名，而是那一刻你与屏幕里世界之间建立的默契。</p>
+            </div>
+        </div>
+
+        <!-- 场景与提示混合区块 (FAQ摘要风格) -->
+        <div class="scene-block">
+            <h2>几个常见的场景与提醒</h2>
+            <div class="scene-item">
+                <span class="scene-num">1</span>
+                <div class="scene-text"><strong>刚刚接触一个类型</strong> —— 不必急于看完所有教程。先花十分钟随意探索，让界面和操作慢慢成为你的直觉。</div>
+            </div>
+            <div class="scene-item">
+                <span class="scene-num">2</span>
+                <div class="scene-text"><strong>玩到一半感到疲倦</strong> —— 这是正常的。游戏不是任务，可以放下，过几天再回来。好的故事不会跑掉。</div>
+            </div>
+            <div class="scene-item">
+                <span class="scene-num">3</span>
+                <div class="scene-text"><strong>想分享给身边的人</strong> —— 试试描述你在这个世界里感受到的情绪，而不是直接说「这个很好玩」。感受往往比评价更有说服力。</div>
+            </div>
+            <div class="scene-item">
+                <span class="scene-num">4</span>
+                <div class="scene-text"><strong>遇到复杂系统或大量文本</strong> —— 给自己一点耐心。有时候，慢慢读一段说明，比跳过它更能体会到设计的用心。</div>
+            </div>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="gentle-footer">
+            <p>
+                说到底，游戏是一种语言。它不着急说话，也不期待你立刻回应。如果你愿意，可以随时走进来，坐在那个安静的位置上，慢慢感受。
+            </p>
+            <p>
+                了解更多关于游戏的内容与陪伴，欢迎时常来看看 <a href="https://mainapp-i-game.com.cn" class="highlight-link">爱游戏</a>。
+            </p>
+            <p class="small-print">
+                — 不喧哗，不催促。只是整理与记录。
+            </p>
+        </div>
+
+    </main>
+
+</body>
+</html>
